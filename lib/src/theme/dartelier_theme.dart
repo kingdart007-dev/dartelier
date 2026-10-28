@@ -7,8 +7,9 @@ import '../foundation/dartelier_typography.dart';
 
 /// Builds Dartelier's neutral, low-noise themes for Flutter applications.
 ///
-/// These are starting points, not a branding lock-in. Applications can copy
-/// the returned ThemeData and customize its color scheme and component themes.
+/// The defaults are starting points, not a branding lock-in. Use
+/// [fromColorScheme] to retain Dartelier's component defaults while adopting
+/// an application's own semantic palette.
 abstract final class DartelierTheme {
   static const BorderRadius _controlRadius = BorderRadius.all(
     Radius.circular(DartelierRadii.md),
@@ -49,32 +50,98 @@ abstract final class DartelierTheme {
     );
   }
 
-  static ButtonStyle _filledButtonStyle() => FilledButton.styleFrom(
-    minimumSize: const Size(48, 48),
-    padding: const EdgeInsets.symmetric(
-      horizontal: DartelierSpacing.md,
-      vertical: DartelierSpacing.sm,
-    ),
-    shape: _buttonShape(),
-  );
+  static ButtonStyle _buttonStyle(ShapeBorder shape) =>
+      FilledButton.styleFrom(
+        minimumSize: const Size(48, 48),
+        padding: const EdgeInsets.symmetric(
+          horizontal: DartelierSpacing.md,
+          vertical: DartelierSpacing.sm,
+        ),
+        shape: shape,
+      );
 
-  static ButtonStyle _outlinedButtonStyle() => OutlinedButton.styleFrom(
-    minimumSize: const Size(48, 48),
-    padding: const EdgeInsets.symmetric(
-      horizontal: DartelierSpacing.md,
-      vertical: DartelierSpacing.sm,
-    ),
-    shape: _buttonShape(),
-  );
+  static ThemeData _build({
+    required ColorScheme colorScheme,
+    required Color scaffoldBackgroundColor,
+    required Color cardColor,
+    required Color inputFillColor,
+  }) {
+    final buttonShape = _buttonShape();
 
-  static ButtonStyle _textButtonStyle() => TextButton.styleFrom(
-    minimumSize: const Size(48, 48),
-    padding: const EdgeInsets.symmetric(
-      horizontal: DartelierSpacing.md,
-      vertical: DartelierSpacing.sm,
-    ),
-    shape: _buttonShape(),
-  );
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+      textTheme: DartelierTypography.textTheme.apply(
+        bodyColor: colorScheme.onSurface,
+        displayColor: colorScheme.onSurface,
+      ),
+      scaffoldBackgroundColor: scaffoldBackgroundColor,
+      dividerColor: colorScheme.outline,
+      cardTheme: CardThemeData(
+        color: cardColor,
+        elevation: 0,
+        margin: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(DartelierRadii.lg),
+          ),
+          side: BorderSide(color: colorScheme.outline),
+        ),
+      ),
+      inputDecorationTheme: _inputTheme(
+        fillColor: inputFillColor,
+        outline: colorScheme.outline,
+        focused: colorScheme.primary,
+        error: colorScheme.error,
+        mutedText: colorScheme.onSurfaceVariant,
+        disabledOutline: colorScheme.outlineVariant,
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: _buttonStyle(buttonShape),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          padding: const EdgeInsets.symmetric(
+            horizontal: DartelierSpacing.md,
+            vertical: DartelierSpacing.sm,
+          ),
+          shape: buttonShape,
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          padding: const EdgeInsets.symmetric(
+            horizontal: DartelierSpacing.md,
+            vertical: DartelierSpacing.sm,
+          ),
+          shape: buttonShape,
+        ),
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          shape: buttonShape,
+        ),
+      ),
+    );
+  }
+
+  /// Creates a Dartelier theme from a caller-owned semantic color scheme.
+  ///
+  /// The supplied scheme controls primary, text, surface, outline, and error
+  /// colors. Component shapes, spacing, typography, and touch targets remain
+  /// consistent. For best results, provide a scheme with accessible contrast
+  /// and populated Material 3 surface-container roles.
+  static ThemeData fromColorScheme(ColorScheme colorScheme) {
+    return _build(
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: colorScheme.surface,
+      cardColor: colorScheme.surfaceContainerLow,
+      inputFillColor: colorScheme.surfaceContainerHighest,
+    );
+  }
 
   /// Neutral light theme with semantic colors and restrained surfaces.
   static ThemeData get light {
@@ -90,47 +157,15 @@ abstract final class DartelierTheme {
       onError: DartelierColors.paper,
       outline: DartelierColors.outline,
       outlineVariant: Color(0xFFEEEEEA),
+      surfaceContainerLow: DartelierColors.softPaper,
+      surfaceContainerHighest: Color(0xFFF2F2EF),
     );
 
-    return ThemeData(
-      useMaterial3: true,
+    return _build(
       colorScheme: scheme,
-      textTheme: DartelierTypography.textTheme.apply(
-        bodyColor: scheme.onSurface,
-        displayColor: scheme.onSurface,
-      ),
       scaffoldBackgroundColor: DartelierColors.paper,
-      dividerColor: DartelierColors.outline,
-      canvasColor: DartelierColors.paper,
       cardColor: DartelierColors.softPaper,
-      cardTheme: const CardThemeData(
-        color: DartelierColors.softPaper,
-        elevation: 0,
-        margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(DartelierRadii.lg)),
-          side: BorderSide(color: DartelierColors.outline),
-        ),
-      ),
-      inputDecorationTheme: _inputTheme(
-        fillColor: DartelierColors.softPaper,
-        outline: DartelierColors.outline,
-        focused: scheme.primary,
-        error: scheme.error,
-        mutedText: scheme.onSurfaceVariant,
-        disabledOutline: scheme.outlineVariant,
-      ),
-      filledButtonTheme: FilledButtonThemeData(style: _filledButtonStyle()),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: _outlinedButtonStyle(),
-      ),
-      textButtonTheme: TextButtonThemeData(style: _textButtonStyle()),
-      iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(
-          minimumSize: const Size(48, 48),
-          shape: _buttonShape(),
-        ),
-      ),
+      inputFillColor: DartelierColors.softPaper,
     );
   }
 
@@ -141,54 +176,22 @@ abstract final class DartelierTheme {
       onPrimary: DartelierColors.canvasDark,
       secondary: DartelierColors.mutedTextDark,
       onSecondary: DartelierColors.canvasDark,
-      surface: DartelierColors.surfaceDark,
+      surface: DartelierColors.canvasDark,
       onSurface: DartelierColors.textDark,
       onSurfaceVariant: DartelierColors.mutedTextDark,
       error: DartelierColors.errorDark,
       onError: DartelierColors.canvasDark,
       outline: DartelierColors.outlineDark,
       outlineVariant: Color(0xFF292926),
+      surfaceContainerLow: DartelierColors.surfaceDark,
+      surfaceContainerHighest: Color(0xFF242422),
     );
 
-    return ThemeData(
-      useMaterial3: true,
+    return _build(
       colorScheme: scheme,
-      textTheme: DartelierTypography.textTheme.apply(
-        bodyColor: scheme.onSurface,
-        displayColor: scheme.onSurface,
-      ),
       scaffoldBackgroundColor: DartelierColors.canvasDark,
-      dividerColor: DartelierColors.outlineDark,
-      canvasColor: DartelierColors.canvasDark,
       cardColor: DartelierColors.surfaceDark,
-      cardTheme: const CardThemeData(
-        color: DartelierColors.surfaceDark,
-        elevation: 0,
-        margin: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(DartelierRadii.lg)),
-          side: BorderSide(color: DartelierColors.outlineDark),
-        ),
-      ),
-      inputDecorationTheme: _inputTheme(
-        fillColor: DartelierColors.surfaceDark,
-        outline: DartelierColors.outlineDark,
-        focused: scheme.primary,
-        error: scheme.error,
-        mutedText: scheme.onSurfaceVariant,
-        disabledOutline: scheme.outlineVariant,
-      ),
-      filledButtonTheme: FilledButtonThemeData(style: _filledButtonStyle()),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: _outlinedButtonStyle(),
-      ),
-      textButtonTheme: TextButtonThemeData(style: _textButtonStyle()),
-      iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(
-          minimumSize: const Size(48, 48),
-          shape: _buttonShape(),
-        ),
-      ),
+      inputFillColor: DartelierColors.surfaceDark,
     );
   }
 }

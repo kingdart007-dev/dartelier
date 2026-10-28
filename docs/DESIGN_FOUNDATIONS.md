@@ -49,7 +49,7 @@ DartelierColors exposes neutral palette primitives. Components should prefer sem
 
 ## Theme usage
 
-Wrap the application in Flutter's MaterialApp and pass DartelierTheme.light and DartelierTheme.dark as theme and darkTheme. Use ThemeMode.system when the operating system should select the theme. Apps can use copyWith or construct their own ThemeData from the semantic tokens.
+Wrap the application in Flutter's MaterialApp and pass DartelierTheme.light and DartelierTheme.dark as theme and darkTheme. Use ThemeMode.system when the operating system should select the theme. Apps can use copyWith or call `DartelierTheme.fromColorScheme(colorScheme)` to apply their own semantic palette while retaining Dartelier's component defaults.
 
 The theme configures restrained outlined cards, filled form fields, consistent field focus/error states, and 48 logical-pixel minimum button targets. These are defaults; consuming apps can override component themes where product needs differ.
 

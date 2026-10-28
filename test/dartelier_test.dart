@@ -51,6 +51,36 @@ void main() {
       );
     });
 
+    test('builds from a caller-owned semantic color scheme', () {
+      const customScheme = ColorScheme.light(
+        primary: Color(0xFF2457A6),
+        onPrimary: Colors.white,
+        surface: Color(0xFFFDFBFF),
+        onSurface: Color(0xFF17171B),
+        onSurfaceVariant: Color(0xFF494952),
+        outline: Color(0xFF777780),
+        outlineVariant: Color(0xFFDDDAE3),
+        error: Color(0xFFBA1A1A),
+        onError: Colors.white,
+        surfaceContainerLow: Color(0xFFF2F0F8),
+        surfaceContainerHighest: Color(0xFFE8E5F0),
+      );
+
+      final theme = DartelierTheme.fromColorScheme(customScheme);
+
+      expect(theme.colorScheme.primary, const Color(0xFF2457A6));
+      expect(theme.scaffoldBackgroundColor, customScheme.surface);
+      expect(theme.cardTheme.color, customScheme.surfaceContainerLow);
+      expect(
+        theme.inputDecorationTheme.fillColor,
+        customScheme.surfaceContainerHighest,
+      );
+      expect(
+        theme.filledButtonTheme.style?.shape?.resolve(<WidgetState>{}),
+        isA<ShapeBorder>(),
+      );
+    });
+
     test('uses Material 3 and exposes semantic text styles', () {
       expect(DartelierTheme.light.useMaterial3, isTrue);
       expect(DartelierTheme.light.textTheme.bodyMedium?.fontSize, 14);
