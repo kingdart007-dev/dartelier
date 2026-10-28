@@ -50,15 +50,14 @@ abstract final class DartelierTheme {
     );
   }
 
-  static ButtonStyle _buttonStyle(ShapeBorder shape) =>
-      FilledButton.styleFrom(
-        minimumSize: const Size(48, 48),
-        padding: const EdgeInsets.symmetric(
-          horizontal: DartelierSpacing.md,
-          vertical: DartelierSpacing.sm,
-        ),
-        shape: shape,
-      );
+  static ButtonStyle _buttonStyle(ShapeBorder shape) => FilledButton.styleFrom(
+    minimumSize: const Size(48, 48),
+    padding: const EdgeInsets.symmetric(
+      horizontal: DartelierSpacing.md,
+      vertical: DartelierSpacing.sm,
+    ),
+    shape: shape,
+  );
 
   static ThemeData _build({
     required ColorScheme colorScheme,
