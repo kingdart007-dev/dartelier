@@ -66,6 +66,11 @@ void main() {
       final dark = DartelierTheme.dark;
 
       expect(light.inputDecorationTheme.filled, isTrue);
+      expect(light.checkboxTheme.shape, isA<OutlinedBorder>());
+      expect(light.switchTheme.trackOutlineColor, isNotNull);
+      expect(light.progressIndicatorTheme.color, light.colorScheme.primary);
+      expect(light.snackBarTheme.behavior, SnackBarBehavior.floating);
+      expect(light.dialogTheme.elevation, 0);
       expect(dark.inputDecorationTheme.filled, isTrue);
       expect(
         light.filledButtonTheme.style?.minimumSize?.resolve(<WidgetState>{}),
