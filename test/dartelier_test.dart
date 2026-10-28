@@ -279,10 +279,7 @@ void main() {
           home: const Scaffold(
             body: Padding(
               padding: EdgeInsets.all(16),
-              child: AppTextField(
-                label: 'Email',
-                hintText: 'you@example.com',
-              ),
+              child: AppTextField(label: 'Email', hintText: 'you@example.com'),
             ),
           ),
         ),
@@ -333,9 +330,7 @@ void main() {
       final formFields = tester.widgetList<TextFormField>(
         find.byType(TextFormField),
       );
-      final textFields = tester.widgetList<TextField>(
-        find.byType(TextField),
-      );
+      final textFields = tester.widgetList<TextField>(find.byType(TextField));
       expect(formFields.first.enabled, isFalse);
       expect(textFields.last.readOnly, isTrue);
     });
