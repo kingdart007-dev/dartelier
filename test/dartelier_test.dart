@@ -152,7 +152,6 @@ void main() {
       tester,
     ) async {
       final semantics = tester.ensureSemantics();
-      addTearDown(semantics.dispose);
 
       await tester.pumpWidget(
         const MaterialApp(
@@ -173,6 +172,7 @@ void main() {
         tester.widget<FilledButton>(find.byType(FilledButton)).onPressed,
         isNull,
       );
+      semantics.dispose();
     });
 
     testWidgets('supports variants and full-width layout', (tester) async {
