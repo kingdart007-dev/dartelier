@@ -290,13 +290,10 @@ void main() {
 
       expect(find.text('Email'), findsOneWidget);
       expect(find.text('you@example.com'), findsOneWidget);
-      expect(
-        tester
-            .widget<TextFormField>(find.byType(TextFormField))
-            .decoration
-            ?.labelText,
-        'Email',
+      final field = tester.widget<TextFormField>(
+        find.byType(TextFormField),
       );
+      expect(field.decoration.labelText, 'Email');
     });
 
     testWidgets('shows caller-provided validation errors', (tester) async {
