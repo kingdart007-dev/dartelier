@@ -177,7 +177,10 @@ void main() {
       );
 
       expect(find.text('ملخص النشاط اليومي'), findsOneWidget);
-      expect(find.text('تفاصيل إضافية تظهر هنا باللغة العربية'), findsOneWidget);
+      expect(
+        find.text('تفاصيل إضافية تظهر هنا باللغة العربية'),
+        findsOneWidget,
+      );
       expect(tester.takeException(), isNull);
     });
   });
