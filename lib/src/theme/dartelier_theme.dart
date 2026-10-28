@@ -50,31 +50,31 @@ abstract final class DartelierTheme {
   }
 
   static ButtonStyle _filledButtonStyle() => FilledButton.styleFrom(
-        minimumSize: const Size(48, 48),
-        padding: const EdgeInsets.symmetric(
-          horizontal: DartelierSpacing.md,
-          vertical: DartelierSpacing.sm,
-        ),
-        shape: _buttonShape(),
-      );
+    minimumSize: const Size(48, 48),
+    padding: const EdgeInsets.symmetric(
+      horizontal: DartelierSpacing.md,
+      vertical: DartelierSpacing.sm,
+    ),
+    shape: _buttonShape(),
+  );
 
   static ButtonStyle _outlinedButtonStyle() => OutlinedButton.styleFrom(
-        minimumSize: const Size(48, 48),
-        padding: const EdgeInsets.symmetric(
-          horizontal: DartelierSpacing.md,
-          vertical: DartelierSpacing.sm,
-        ),
-        shape: _buttonShape(),
-      );
+    minimumSize: const Size(48, 48),
+    padding: const EdgeInsets.symmetric(
+      horizontal: DartelierSpacing.md,
+      vertical: DartelierSpacing.sm,
+    ),
+    shape: _buttonShape(),
+  );
 
   static ButtonStyle _textButtonStyle() => TextButton.styleFrom(
-        minimumSize: const Size(48, 48),
-        padding: const EdgeInsets.symmetric(
-          horizontal: DartelierSpacing.md,
-          vertical: DartelierSpacing.sm,
-        ),
-        shape: _buttonShape(),
-      );
+    minimumSize: const Size(48, 48),
+    padding: const EdgeInsets.symmetric(
+      horizontal: DartelierSpacing.md,
+      vertical: DartelierSpacing.sm,
+    ),
+    shape: _buttonShape(),
+  );
 
   /// Neutral light theme with semantic colors and restrained surfaces.
   static ThemeData get light {
