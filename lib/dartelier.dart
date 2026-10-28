@@ -11,6 +11,7 @@ export 'src/foundation/dartelier_typography.dart';
 export 'src/layout/app_page.dart';
 export 'src/theme/dartelier_theme.dart';
 export 'src/widgets/app_button.dart';
+export 'src/widgets/app_icon_button.dart';
 export 'src/widgets/app_card.dart';
 export 'src/widgets/app_text_field.dart';
 export 'src/widgets/empty_state.dart';

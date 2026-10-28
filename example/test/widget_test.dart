@@ -31,6 +31,13 @@ void main() {
     expect(find.text('Actions'), findsOneWidget);
 
     await tester.scrollUntilVisible(
+      find.text('Icon actions'),
+      240,
+      scrollable: verticalScrollable,
+    );
+    expect(find.text('Icon actions'), findsOneWidget);
+
+    await tester.scrollUntilVisible(
       find.text('Empty state'),
       240,
       scrollable: verticalScrollable,

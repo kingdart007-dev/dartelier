@@ -59,6 +59,7 @@ The theme configures restrained outlined cards, filled form fields, consistent f
 - SectionHeader: section title, optional supporting text, and optional trailing action.
 - AppCard: low-elevation outlined grouping surface; optionally interactive.
 - AppButton: primary, secondary, and tertiary action styles with disabled and loading states.
+- AppIconButton: standard, filled, tonal, and outlined icon actions with a required tooltip for accessible naming.
 - AppTextField: a themed TextFormField wrapper with caller-owned labels, helper/error text, validation, and common input states.
 - EmptyState: reusable no-content/no-results layout; all user-facing text is supplied by the consumer for localization.
 
@@ -67,7 +68,7 @@ The theme configures restrained outlined cards, filled form fields, consistent f
 - Do not bake English copy into shared components. Provide translated labels from the consuming application.
 - Respect text scaling; do not constrain content to fixed heights.
 - Aim for comfortable touch targets and visible keyboard focus; validate on Android and iOS.
-- Use semantic button labels for icon-only actions at the call site.
+- AppIconButton requires a tooltip; provide a concise, localized label that explains the action rather than the icon's appearance.
 - Check color contrast and focus order in real screens, not just isolated widgets.
 - Use Directionality and direction-aware padding/alignment for layouts that are meant to mirror. These first components avoid fixed directional padding where possible.
 - An automated smoke test covers Arabic RTL layout at enlarged text scale; it complements, but does not replace, manual device review.

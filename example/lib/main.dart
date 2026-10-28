@@ -164,6 +164,41 @@ class _DartelierExampleAppState extends State<DartelierExampleApp> {
                 ],
               ),
               const SizedBox(height: DartelierSpacing.xl),
+              const SizedBox(height: DartelierSpacing.xl),
+              const SectionHeader(
+                title: 'Icon actions',
+                subtitle: 'Compact controls with required accessible labels.',
+              ),
+              const SizedBox(height: DartelierSpacing.sm),
+              Wrap(
+                spacing: DartelierSpacing.sm,
+                runSpacing: DartelierSpacing.sm,
+                children: [
+                  AppIconButton(
+                    icon: Icons.search,
+                    tooltip: 'Search',
+                    onPressed: () => _showMessage(context, 'Search'),
+                  ),
+                  AppIconButton(
+                    icon: Icons.favorite_border,
+                    tooltip: 'Favorite',
+                    variant: AppIconButtonVariant.outlined,
+                    onPressed: () => _showMessage(context, 'Favorite'),
+                  ),
+                  AppIconButton(
+                    icon: Icons.add,
+                    tooltip: 'Add item',
+                    variant: AppIconButtonVariant.filled,
+                    onPressed: () => _showMessage(context, 'Add item'),
+                  ),
+                  AppIconButton(
+                    icon: Icons.more_horiz,
+                    tooltip: 'More options',
+                    variant: AppIconButtonVariant.tonal,
+                    onPressed: () => _showMessage(context, 'More options'),
+                  ),
+                ],
+              ),
               const SectionHeader(
                 title: 'Empty state',
                 subtitle: 'Clear messaging when there is nothing to show.',

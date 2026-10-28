@@ -246,6 +246,72 @@ void main() {
     });
   });
 
+  group('AppIconButton', () {
+    testWidgets('requires a tooltip and invokes the supplied action', (
+      tester,
+    ) async {
+      var tapped = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppIconButton(
+              icon: Icons.close,
+              tooltip: 'Close dialog',
+              onPressed: () => tapped = true,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byTooltip('Close dialog'), findsOneWidget);
+      await tester.tap(find.byTooltip('Close dialog'));
+      expect(tapped, isTrue);
+    });
+
+    testWidgets('supports all visual variants and disabled state', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: Wrap(
+              children: [
+                AppIconButton(
+                  icon: Icons.search,
+                  tooltip: 'Search',
+                  onPressed: null,
+                ),
+                AppIconButton(
+                  icon: Icons.edit,
+                  tooltip: 'Edit',
+                  variant: AppIconButtonVariant.filled,
+                  onPressed: null,
+                ),
+                AppIconButton(
+                  icon: Icons.add,
+                  tooltip: 'Add',
+                  variant: AppIconButtonVariant.tonal,
+                  onPressed: null,
+                ),
+                AppIconButton(
+                  icon: Icons.more_horiz,
+                  tooltip: 'More',
+                  variant: AppIconButtonVariant.outlined,
+                  onPressed: null,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(IconButton), findsOneWidget);
+      expect(find.byType(IconButton.filled), findsOneWidget);
+      expect(find.byType(IconButton.filledTonal), findsOneWidget);
+      expect(find.byType(IconButton.outlined), findsOneWidget);
+    });
+  });
+
   group('AppCard', () {
     testWidgets('renders content and handles taps when interactive', (
       tester,
