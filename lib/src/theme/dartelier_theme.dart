@@ -50,13 +50,13 @@ abstract final class DartelierTheme {
     );
   }
 
-  static ButtonStyle _buttonStyle(RoundedRectangleBorder shape) => FilledButton.styleFrom(
+  static ButtonStyle _filledButtonStyle() => FilledButton.styleFrom(
     minimumSize: const Size(48, 48),
     padding: const EdgeInsets.symmetric(
       horizontal: DartelierSpacing.md,
       vertical: DartelierSpacing.sm,
     ),
-    shape: shape,
+    shape: _buttonShape(),
   );
 
   static ThemeData _build({
@@ -96,7 +96,7 @@ abstract final class DartelierTheme {
         disabledOutline: colorScheme.outlineVariant,
       ),
       filledButtonTheme: FilledButtonThemeData(
-        style: _buttonStyle(buttonShape),
+        style: _filledButtonStyle(),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
