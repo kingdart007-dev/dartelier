@@ -45,6 +45,7 @@ Acceptance gate:
 - [x] User-facing empty-state text is supplied by the consumer.
 - [x] CI passes for package and example.
 - [ ] Accessibility and localization behavior receives manual review.
+- [ ] Example is run on Android and iOS devices or emulators; native runner folders are not committed yet.
 
 ## Stage 4 — Optional app foundation
 Explore navigation, state, error handling, and project structure as optional patterns. Do not force Riverpod, go_router, or other dependencies on all users without evidence.

@@ -31,13 +31,18 @@ The public API includes spacing, radii, neutral color primitives, typography rol
 
 ## Run the example
 
+The example source and widget tests are checked in. Native Android/iOS runner folders are intentionally not checked in yet; generate them once before running on a device.
+
 From the repository root:
 
 ```sh
 cd example
+flutter create --platforms=android,ios .
 flutter pub get
 flutter run
 ```
+
+The GitHub Actions workflow validates formatting, analysis, and widget tests for both the package and example. It does not yet claim an Android APK or iOS app build has been verified.
 
 ## Local quality checks
 
