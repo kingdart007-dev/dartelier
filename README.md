@@ -1,36 +1,46 @@
 # Dartelier
 
-**A thoughtfully engineered Flutter UI system and toolkit for building beautiful, maintainable mobile apps.**
+**A thoughtfully engineered Flutter UI system and toolkit for building maintainable mobile apps.**
 
-Dartelier is an independent project exploring how to make Flutter app development more consistent and approachable—from reusable design foundations for experienced engineers to better-guided workflows for people who are newer to app development.
-
-The long-term vision is ambitious; implementation will remain incremental. We will validate the foundations before expanding into a large component catalogue or visual app builder.
+Dartelier aims to make Flutter development more consistent and approachable—from reusable design foundations for experienced engineers to better-guided workflows for newer developers. Implementation is incremental: we validate the foundations before expanding into a large component catalogue or visual app builder.
 
 ## Principles
 
-- **Craft over feature count:** every public feature should solve a real problem.
-- **Customization without fragility:** useful defaults, deliberate extension points, understandable code.
-- **Simple before clever:** no architecture or dependency without a reason.
-- **Accessible and platform-aware:** consider Android, iOS, text scaling, semantics, motion, and RTL from the start.
-- **Honest engineering:** distinguish planned work from implemented and verified work.
-- **Small, reviewable steps:** each stage has acceptance criteria.
+- Craft over feature count; each public feature solves a real problem.
+- Customization without fragility: useful defaults and deliberate extension points.
+- Simple before clever; no abstraction or dependency without a reason.
+- Accessibility and platform awareness, including text scaling, semantics, motion, and RTL.
+- Honest reporting of planned, implemented, and verified work.
+- Small, reviewable changes with explicit acceptance criteria.
 
 ## Project documents
 
-- [Product Vision & Success Criteria](docs/PRODUCT_VISION.md)
-- [Engineering Principles & Decision Framework](docs/ENGINEERING_PRINCIPLES.md)
+- [Product Vision](docs/PRODUCT_VISION.md)
+- [Engineering Principles](docs/ENGINEERING_PRINCIPLES.md)
 - [Roadmap & Stage Gates](docs/ROADMAP.md)
+- [Repository Foundation Decisions](docs/decisions/REPOSITORY_FOUNDATION.md)
 
 ## Current status
 
-**Stage 0 — product definition and engineering principles.**
+**Early implementation: initial design foundations are in progress.**
 
-This repository is at the beginning of the project. It does not yet claim to provide a production-ready Flutter package, a complete design system, or a visual app builder.
+The package currently exposes a small spacing scale, corner-radius scale, and neutral light/dark `ThemeData` starting points. These are the first foundations—not a complete design system or a production-ready component library. CI is being used to validate the minimum supported Flutter version and the current stable channel; check the [Actions results](https://github.com/kingdart007-dev/dartelier/actions) for the latest status.
 
-## Scope
+## Scope and package structure
 
-The initial target is Flutter/Dart for Android and iOS. Package boundaries, supported SDK versions, license, and public API strategy will be decided and documented before the first distributable package is established.
+The initial target is Flutter/Dart for Android and iOS. The repository starts as one package named `dartelier`; separate packages and an example app will be added only when a real use case justifies them.
 
-## Contributing
+## Local quality checks
 
-Contribution instructions and automated quality gates will be added as the repository foundation is established. Until then, product and engineering decisions should be small, explained, and easy to review.
+With a compatible Flutter SDK installed, run:
+
+```sh
+flutter pub get
+dart format --output=none --set-exit-if-changed .
+flutter analyze --fatal-infos
+flutter test
+```
+
+## License
+
+Dartelier is licensed under the MIT License. See [LICENSE](LICENSE).
