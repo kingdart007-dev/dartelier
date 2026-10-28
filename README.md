@@ -42,7 +42,7 @@ flutter pub get
 flutter run
 ```
 
-The GitHub Actions workflow validates formatting, analysis, and widget tests for both the package and example. It does not yet claim an Android APK or iOS app build has been verified.
+The standard GitHub Actions workflow validates formatting, analysis, and widget tests for both the package and example. A separate native smoke-build workflow generates Android/iOS runner scaffolding in CI and attempts an Android debug APK and an iOS simulator build; platform support is only considered verified when those jobs pass.
 
 ## Local quality checks
 

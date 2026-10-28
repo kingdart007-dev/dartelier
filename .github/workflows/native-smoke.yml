@@ -1,0 +1,62 @@
+name: Native platform smoke builds
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: native-smoke-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: ${{ matrix.platform }} smoke build
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: android
+            os: ubuntu-latest
+          - platform: ios
+            os: macos-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.8'
+          channel: stable
+          cache: true
+
+      - name: Report toolchain versions
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Generate native runner scaffolding
+        working-directory: example
+        run: flutter create --platforms=${{ matrix.platform }} .
+
+      - name: Resolve example dependencies
+        working-directory: example
+        run: flutter pub get
+
+      - name: Build Android debug APK
+        if: matrix.platform == 'android'
+        working-directory: example
+        run: flutter build apk --debug
+
+      - name: Build iOS simulator app
+        if: matrix.platform == 'ios'
+        working-directory: example
+        run: flutter build ios --simulator --no-codesign

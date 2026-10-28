@@ -20,6 +20,7 @@ Acceptance gate:
 - [x] Contribution and issue-reporting paths are documented.
 - [x] CI passes on the declared supported Flutter version.
 - [ ] Clean-checkout setup is verified.
+- [ ] Android and iOS native smoke-build jobs pass on GitHub Actions.
 
 ## Stage 2 — Design foundations
 **Initial design tokens, themes, and layout primitives implemented; review continues.**
@@ -46,7 +47,7 @@ Acceptance gate:
 - [x] Icon-only actions require an accessible tooltip label and expose four visual variants.
 - [x] CI passes for package and example.
 - [ ] Accessibility and localization behavior receives manual review.
-- [ ] Example is run on Android and iOS devices or emulators; native runner folders are not committed yet.
+- [ ] Example is run on physical Android and iOS devices; native runner folders are generated in CI and are not committed yet.
 
 ## Stage 4 — Optional app foundation
 Explore navigation, state, error handling, and project structure as optional patterns. Do not force Riverpod, go_router, or other dependencies on all users without evidence.
