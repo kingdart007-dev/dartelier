@@ -1,1 +1,13 @@
 .dart_tool/
+.packages
+.pub/
+build/
+coverage/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
