@@ -50,6 +50,7 @@ class AppButton extends StatelessWidget {
         Semantics(
           label: loadingLabel,
           liveRegion: true,
+          container: true,
           child: const SizedBox.square(
             dimension: 18,
             child: CircularProgressIndicator(strokeWidth: 2),
