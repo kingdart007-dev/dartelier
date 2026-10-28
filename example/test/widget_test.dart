@@ -15,10 +15,23 @@ void main() {
     );
     expect(find.text('Surfaces'), findsOneWidget);
 
-    await tester.scrollUntilVisible(find.text('Actions'), 240);
+    final verticalScrollable = find.byWidgetPredicate(
+      (widget) =>
+          widget is Scrollable && widget.axisDirection == AxisDirection.down,
+    ).first;
+
+    await tester.scrollUntilVisible(
+      find.text('Actions'),
+      240,
+      scrollable: verticalScrollable,
+    );
     expect(find.text('Actions'), findsOneWidget);
 
-    await tester.scrollUntilVisible(find.text('Empty state'), 240);
+    await tester.scrollUntilVisible(
+      find.text('Empty state'),
+      240,
+      scrollable: verticalScrollable,
+    );
     expect(find.text('Empty state'), findsOneWidget);
   });
 }
