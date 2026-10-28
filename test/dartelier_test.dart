@@ -147,6 +147,39 @@ void main() {
       expect(find.text('Recent items'), findsOneWidget);
       expect(find.text('See all'), findsOneWidget);
     });
+
+    testWidgets('supports RTL and enlarged text without layout errors', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(320, 640);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: MediaQuery(
+            data: const MediaQueryData(textScaler: TextScaler.linear(2)),
+            child: const Directionality(
+              textDirection: TextDirection.rtl,
+              child: Scaffold(
+                body: AppPage(
+                  padding: EdgeInsets.all(16),
+                  child: SectionHeader(
+                    title: 'ملخص النشاط اليومي',
+                    subtitle: 'تفاصيل إضافية تظهر هنا باللغة العربية',
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('ملخص النشاط اليومي'), findsOneWidget);
+      expect(find.text('تفاصيل إضافية تظهر هنا باللغة العربية'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
   });
 
   group('AppButton', () {

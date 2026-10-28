@@ -30,6 +30,7 @@ Acceptance gate:
 - [x] Spacing, radius, color, and typography primitives are centralized.
 - [x] Light and dark themes use semantic color roles.
 - [x] Foundation behavior has automated tests.
+- [x] An automated Arabic RTL and enlarged-text smoke test exists.
 - [ ] Contrast, text scaling, RTL, and reduced-motion review is complete.
 - [ ] Theme behavior is reviewed on real Android and iOS devices.
 

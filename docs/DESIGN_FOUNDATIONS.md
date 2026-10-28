@@ -69,6 +69,7 @@ The theme configures restrained outlined cards, filled form fields, consistent f
 - Use semantic button labels for icon-only actions at the call site.
 - Check color contrast and focus order in real screens, not just isolated widgets.
 - Use Directionality and direction-aware padding/alignment for layouts that are meant to mirror. These first components avoid fixed directional padding where possible.
+- An automated smoke test covers Arabic RTL layout at enlarged text scale; it complements, but does not replace, manual device review.
 - Reduced-motion handling should be considered for future animated components; no custom animation is required by this foundation.
 
 ## Current limitations
