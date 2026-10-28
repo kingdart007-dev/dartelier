@@ -305,10 +305,11 @@ void main() {
         ),
       );
 
-      expect(find.byType(IconButton), findsOneWidget);
-      expect(find.byType(IconButton.filled), findsOneWidget);
-      expect(find.byType(IconButton.filledTonal), findsOneWidget);
-      expect(find.byType(IconButton.outlined), findsOneWidget);
+      expect(find.byType(IconButton), findsNWidgets(4));
+      expect(find.byTooltip('Search'), findsOneWidget);
+      expect(find.byTooltip('Edit'), findsOneWidget);
+      expect(find.byTooltip('Add'), findsOneWidget);
+      expect(find.byTooltip('More'), findsOneWidget);
     });
   });
 
