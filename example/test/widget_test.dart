@@ -15,10 +15,13 @@ void main() {
     );
     expect(find.text('Surfaces'), findsOneWidget);
 
-    final verticalScrollable = find.byWidgetPredicate(
-      (widget) =>
-          widget is Scrollable && widget.axisDirection == AxisDirection.down,
-    ).first;
+    final verticalScrollable = find
+        .byWidgetPredicate(
+          (widget) =>
+              widget is Scrollable &&
+              widget.axisDirection == AxisDirection.down,
+        )
+        .first;
 
     await tester.scrollUntilVisible(
       find.text('Actions'),
