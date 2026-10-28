@@ -121,7 +121,9 @@ abstract final class DartelierTheme {
         disabledOutline: scheme.outlineVariant,
       ),
       filledButtonTheme: FilledButtonThemeData(style: _filledButtonStyle()),
-      outlinedButtonTheme: OutlinedButtonThemeData(style: _outlinedButtonStyle()),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: _outlinedButtonStyle(),
+      ),
       textButtonTheme: TextButtonThemeData(style: _textButtonStyle()),
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
