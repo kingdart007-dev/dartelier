@@ -95,9 +95,7 @@ abstract final class DartelierTheme {
         mutedText: colorScheme.onSurfaceVariant,
         disabledOutline: colorScheme.outlineVariant,
       ),
-      filledButtonTheme: FilledButtonThemeData(
-        style: _filledButtonStyle(),
-      ),
+      filledButtonTheme: FilledButtonThemeData(style: _filledButtonStyle()),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           minimumSize: const Size(48, 48),
