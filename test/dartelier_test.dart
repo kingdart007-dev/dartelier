@@ -54,4 +54,75 @@ void main() {
       expect(customized.visualDensity, VisualDensity.compact);
     });
   });
+
+  group('AppPage', () {
+    testWidgets('centers content within its maximum width', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: AppPage(
+              maxWidth: 320,
+              useSafeArea: false,
+              child: SizedBox(key: Key('page-content'), height: 40),
+            ),
+          ),
+        ),
+      );
+
+      final content = tester.getRect(find.byKey(const Key('page-content')));
+      expect(content.width, 272);
+      expect(content.center.dx, 400);
+    });
+
+    testWidgets('respects custom padding', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: AppPage(
+              padding: EdgeInsets.all(10),
+              useSafeArea: false,
+              child: SizedBox(key: Key('page-content'), width: 100, height: 40),
+            ),
+          ),
+        ),
+      );
+
+      expect(tester.getTopLeft(find.byKey(const Key('page-content'))).dx, 10);
+      expect(tester.getTopLeft(find.byKey(const Key('page-content'))).dy, 10);
+    });
+  });
+
+  group('SectionHeader', () {
+    testWidgets('shows title and optional subtitle', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: SectionHeader(
+              title: 'Your activity',
+              subtitle: 'A summary of today',
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Your activity'), findsOneWidget);
+      expect(find.text('A summary of today'), findsOneWidget);
+    });
+
+    testWidgets('supports a trailing action', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: SectionHeader(
+              title: 'Recent items',
+              trailing: TextButton(onPressed: null, child: Text('See all')),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Recent items'), findsOneWidget);
+      expect(find.text('See all'), findsOneWidget);
+    });
+  });
 }
