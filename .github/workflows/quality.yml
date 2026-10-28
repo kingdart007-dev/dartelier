@@ -17,7 +17,7 @@ jobs:
   quality:
     name: Flutter ${{ matrix.flutter-version }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     strategy:
       fail-fast: false
       matrix:
@@ -39,14 +39,26 @@ jobs:
           flutter --version
           dart --version
 
-      - name: Resolve dependencies
+      - name: Resolve package dependencies
         run: flutter pub get
 
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
-      - name: Analyze
+      - name: Analyze package
         run: flutter analyze --fatal-infos
 
-      - name: Run tests
+      - name: Test package
+        run: flutter test
+
+      - name: Resolve example dependencies
+        working-directory: example
+        run: flutter pub get
+
+      - name: Analyze example
+        working-directory: example
+        run: flutter analyze --fatal-infos
+
+      - name: Test example
+        working-directory: example
         run: flutter test

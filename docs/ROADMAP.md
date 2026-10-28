@@ -8,12 +8,12 @@ This roadmap is incremental. A stage advances only when its acceptance criteria 
 Deliverables: product vision, engineering principles, initial scope, non-goals, and risks.
 
 ## Stage 1 — Repository foundation
-**Implemented; CI verification remains open.**
+**Implementation in place; CI verification remains open.**
 
-Implemented: single-package direction, package manifest, public entrypoint, analysis configuration, behavior tests, MIT license, and quality workflow.
+Implemented: single-package direction, package manifest, public entrypoint, analysis configuration, package tests, MIT license, quality workflow, and a runnable example package.
 
 Acceptance gate:
-- [x] One-package starting direction documented.
+- [x] One-package library direction documented.
 - [x] Package manifest and public entrypoint exist.
 - [x] Formatting, analysis, and tests are configured.
 - [x] CI is configured for pushes and pull requests.
@@ -22,25 +22,28 @@ Acceptance gate:
 - [ ] Contribution guidance is in place.
 
 ## Stage 2 — Design foundations
-**Core layout and theme foundations implemented; design review continues.**
+**Initial design tokens, themes, and layout primitives implemented; review continues.**
 
-Implemented: spacing and corner-radius scales, neutral light/dark theme starting points, safe-area-aware constrained AppPage, and flexible SectionHeader.
-
-Still required:
-- Color and typography token strategy, including single-source-of-truth decisions.
-- Theme customization and platform behavior review.
-- Motion defaults and reduced-motion guidance.
-- Accessibility, text scaling, localization, and RTL verification strategy.
-- Tests and documentation for the public contract.
+Implemented: spacing and radii, neutral palette, typography roles, light/dark theme starting points, safe-area-aware AppPage, and flexible SectionHeader.
 
 Acceptance gate:
-- [ ] Tokens have a single source of truth and documented intent.
-- [ ] Theme customization works without fighting consumer ThemeData.
-- [ ] Contrast, text scaling, RTL, and reduced motion have a verification plan.
-- [ ] Foundation behavior is tested before components are added.
+- [x] Spacing, radius, color, and typography primitives are centralized.
+- [x] Light and dark themes use semantic color roles.
+- [x] Foundation behavior has automated tests.
+- [ ] Contrast, text scaling, RTL, and reduced-motion review is complete.
+- [ ] Theme behavior is reviewed on real Android and iOS devices.
 
 ## Stage 3 — First production-minded components
-Continue with focused, high-value components after reviewing the first component APIs. Components need documented APIs, meaningful state handling, accessibility behavior, tests, and examples.
+**First reusable slice implemented; quality verification remains open.**
+
+Implemented: AppCard, AppButton, EmptyState, SectionHeader, and AppPage. The example app demonstrates component use and theme switching.
+
+Acceptance gate:
+- [x] Components have narrow, documented APIs.
+- [x] Button disabled/loading behavior and interactive card behavior have tests.
+- [x] User-facing empty-state text is supplied by the consumer.
+- [ ] CI passes for package and example.
+- [ ] Accessibility and localization behavior receives manual review.
 
 ## Stage 4 — Optional app foundation
 Explore navigation, state, error handling, and project structure as optional patterns. Do not force Riverpod, go_router, or other dependencies on all users without evidence.

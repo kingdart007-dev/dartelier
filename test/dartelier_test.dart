@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('DartelierSpacing', () {
+  group('Design tokens', () {
     test('exposes the documented spacing scale', () {
       expect(
         <double>[
@@ -18,9 +18,7 @@ void main() {
         <double>[4, 8, 12, 16, 24, 32, 48],
       );
     });
-  });
 
-  group('DartelierRadii', () {
     test('exposes the documented radius scale', () {
       expect(
         <double>[
@@ -32,6 +30,14 @@ void main() {
         <double>[8, 12, 16, 24],
       );
       expect(DartelierRadii.pill, greaterThan(DartelierRadii.xl));
+    });
+
+    test('provides a neutral semantic palette and type scale', () {
+      expect(DartelierColors.ink, const Color(0xFF191918));
+      expect(DartelierTypography.bodySize, 14);
+      expect(DartelierTypography.titleSize, 16);
+      expect(DartelierTypography.sectionSize, 20);
+      expect(DartelierTypography.pageTitleSize, 24);
     });
   });
 
@@ -45,12 +51,13 @@ void main() {
       );
     });
 
-    test('uses Material 3 while allowing normal ThemeData customization', () {
+    test('uses Material 3 and exposes semantic text styles', () {
+      expect(DartelierTheme.light.useMaterial3, isTrue);
+      expect(DartelierTheme.light.textTheme.bodyMedium?.fontSize, 14);
+      expect(DartelierTheme.light.textTheme.titleMedium?.fontSize, 16);
       final customized = DartelierTheme.light.copyWith(
         visualDensity: VisualDensity.compact,
       );
-
-      expect(DartelierTheme.light.useMaterial3, isTrue);
       expect(customized.visualDensity, VisualDensity.compact);
     });
   });
@@ -123,6 +130,107 @@ void main() {
 
       expect(find.text('Recent items'), findsOneWidget);
       expect(find.text('See all'), findsOneWidget);
+    });
+  });
+
+  group('AppButton', () {
+    testWidgets('invokes the primary action', (tester) async {
+      var tapped = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppButton(label: 'Continue', onPressed: () => tapped = true),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Continue'));
+      expect(tapped, isTrue);
+    });
+
+    testWidgets('disables its action and shows progress while loading',
+        (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: AppButton(
+              label: 'Saving',
+              onPressed: null,
+              isLoading: true,
+              loadingLabel: 'Saving in progress',
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      expect(find.bySemanticsLabel('Saving in progress'), findsOneWidget);
+      expect(
+        tester.widget<FilledButton>(find.byType(FilledButton)).onPressed,
+        isNull,
+      );
+    });
+
+    testWidgets('supports variants and full-width layout', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: AppButton(
+              label: 'Learn more',
+              onPressed: null,
+              variant: AppButtonVariant.secondary,
+              expand: true,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(OutlinedButton), findsOneWidget);
+      expect(tester.getSize(find.byType(OutlinedButton)).width, 800);
+    });
+  });
+
+  group('AppCard', () {
+    testWidgets('renders content and handles taps when interactive',
+        (tester) async {
+      var tapped = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppCard(
+              onTap: () => tapped = true,
+              semanticLabel: 'Open summary',
+              child: const Text('Summary'),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Summary'), findsOneWidget);
+      await tester.tap(find.text('Summary'));
+      expect(tapped, isTrue);
+    });
+  });
+
+  group('EmptyState', () {
+    testWidgets('renders supplied localized copy and optional action',
+        (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: EmptyState(
+              title: 'لا توجد نتائج',
+              description: 'جرّب البحث مرة أخرى',
+              icon: Icons.search,
+              action: Text('إعادة المحاولة'),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('لا توجد نتائج'), findsOneWidget);
+      expect(find.text('جرّب البحث مرة أخرى'), findsOneWidget);
+      expect(find.text('إعادة المحاولة'), findsOneWidget);
     });
   });
 }

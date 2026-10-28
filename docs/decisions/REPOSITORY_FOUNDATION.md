@@ -4,7 +4,7 @@ Status: Adopted for the initial implementation; validation is ongoing.
 
 ## Package structure
 
-Start with one Flutter package named dartelier. Avoid a multi-package workspace until a real boundary requires it. Add a runnable example when a meaningful public API needs an interactive demonstration.
+The repository contains a core Flutter package named dartelier and a small runnable example package under example/. This keeps the library dependency surface lean while making public APIs easier to inspect and exercise. The example depends on the package through a local path and is analyzed and tested in CI.
 
 ## SDK support
 
@@ -17,7 +17,7 @@ The declared SDK lower bound should be updated only alongside an actual compatib
 
 ## Quality baseline
 
-Use Dart formatting, Flutter static analysis, automated tests, and a minimal GitHub Actions workflow. Do not claim checks passed until CI reports success.
+Use Dart formatting, Flutter static analysis, automated package and example tests, and a minimal GitHub Actions workflow. Do not claim checks passed until CI reports success.
 
 ## License
 

@@ -17,22 +17,44 @@ Dartelier aims to make Flutter development more consistent and approachable—fr
 
 - [Product Vision](docs/PRODUCT_VISION.md)
 - [Engineering Principles](docs/ENGINEERING_PRINCIPLES.md)
+- [Design Foundations](docs/DESIGN_FOUNDATIONS.md)
 - [Roadmap & Stage Gates](docs/ROADMAP.md)
 - [Repository Foundation Decisions](docs/decisions/REPOSITORY_FOUNDATION.md)
 
 ## Current status
 
-**Early implementation: the first reusable layout and section components are in place.**
+**Early implementation: design tokens, reusable components, an interactive example app, and automated quality checks are in place.**
 
-The package exposes spacing and corner-radius scales, neutral light/dark ThemeData starting points, AppPage for safe-area-aware constrained page layout, and SectionHeader for flexible section titles, supporting text, and trailing actions. These are deliberately small foundations—not a complete design system or a production-ready component library. CI currently validates Flutter 3.47.8; support for other SDK versions will be added after compatibility is verified.
+The public API includes spacing, radii, neutral color primitives, typography roles, light/dark theme starting points, AppPage, SectionHeader, AppCard, AppButton, and EmptyState. The example app demonstrates theme selection, component variants, and interactions. This is a growing foundation—not a complete design system or production-ready component library. CI validates Flutter 3.47.8; support for other SDK versions will be added after compatibility is verified.
 
-## Scope and package structure
+## Run the example
 
-The initial target is Flutter/Dart for Android and iOS. The repository starts as one package named dartelier; separate packages and an example app will be added only when a real use case justifies them.
+From the repository root:
+
+```sh
+cd example
+flutter pub get
+flutter run
+```
 
 ## Local quality checks
 
-With Flutter 3.47 or newer installed, run flutter pub get, dart format --output=none --set-exit-if-changed ., flutter analyze --fatal-infos, and flutter test.
+From the repository root:
+
+```sh
+flutter pub get
+dart format --output=none --set-exit-if-changed .
+flutter analyze --fatal-infos
+flutter test
+cd example
+flutter pub get
+flutter analyze --fatal-infos
+flutter test
+```
+
+## Scope
+
+The initial target is Flutter/Dart for Android and iOS. Riverpod, go_router, code generation, and Freezed are not required dependencies of the core UI package.
 
 ## License
 
