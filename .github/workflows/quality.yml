@@ -39,11 +39,11 @@ jobs:
           flutter --version
           dart --version
 
-      - name: Format and expose any formatting diff
-        run: |
-          dart format .
-          git diff --check
-          git diff -- .
+      - name: Resolve package dependencies
+        run: flutter pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
 
       - name: Analyze package
         run: flutter analyze --fatal-infos
