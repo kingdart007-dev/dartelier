@@ -291,7 +291,10 @@ void main() {
       expect(find.text('Email'), findsOneWidget);
       expect(find.text('you@example.com'), findsOneWidget);
       expect(
-        tester.widget<TextFormField>(find.byType(TextFormField)).decoration?.labelText,
+        tester
+            .widget<TextFormField>(find.byType(TextFormField))
+            .decoration
+            ?.labelText,
         'Email',
       );
     });

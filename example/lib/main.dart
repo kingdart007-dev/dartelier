@@ -117,7 +117,8 @@ class _DartelierExampleAppState extends State<DartelierExampleApp> {
               const SizedBox(height: DartelierSpacing.xl),
               const SectionHeader(
                 title: 'Input',
-                subtitle: 'A themed field with caller-owned validation and text.',
+                subtitle:
+                    'A themed field with caller-owned validation and text.',
               ),
               const SizedBox(height: DartelierSpacing.md),
               AppCard(
