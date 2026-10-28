@@ -59,6 +59,7 @@ The theme configures restrained outlined cards, filled form fields, consistent f
 - SectionHeader: section title, optional supporting text, and optional trailing action.
 - AppCard: low-elevation outlined grouping surface; optionally interactive.
 - AppButton: primary, secondary, and tertiary action styles with disabled and loading states.
+- AppTextField: a themed TextFormField wrapper with caller-owned labels, helper/error text, validation, and common input states.
 - EmptyState: reusable no-content/no-results layout; all user-facing text is supplied by the consumer for localization.
 
 ## Accessibility and localization

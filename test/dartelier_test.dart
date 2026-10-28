@@ -269,6 +269,79 @@ void main() {
     });
   });
 
+  group('AppTextField', () {
+    testWidgets('renders its label and hint using the active theme', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: DartelierTheme.light,
+          home: const Scaffold(
+            body: Padding(
+              padding: EdgeInsets.all(16),
+              child: AppTextField(
+                label: 'Email',
+                hintText: 'you@example.com',
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Email'), findsOneWidget);
+      expect(find.text('you@example.com'), findsOneWidget);
+      expect(
+        tester.widget<TextFormField>(find.byType(TextFormField)).decoration?.labelText,
+        'Email',
+      );
+    });
+
+    testWidgets('shows caller-provided validation errors', (tester) async {
+      final formKey = GlobalKey<FormState>();
+
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: DartelierTheme.light,
+          home: Scaffold(
+            body: Form(
+              key: formKey,
+              child: AppTextField(
+                label: 'Name',
+                validator: (value) =>
+                    value == null || value.isEmpty ? 'Required' : null,
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(formKey.currentState!.validate(), isFalse);
+      await tester.pump();
+      expect(find.text('Required'), findsOneWidget);
+    });
+
+    testWidgets('supports disabled and read-only states', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: Column(
+              children: [
+                AppTextField(label: 'Disabled', enabled: false),
+                AppTextField(label: 'Read only', readOnly: true),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      final fields = tester.widgetList<TextFormField>(
+        find.byType(TextFormField),
+      );
+      expect(fields.first.enabled, isFalse);
+      expect(fields.last.readOnly, isTrue);
+    });
+  });
+
   group('EmptyState', () {
     testWidgets('renders supplied localized copy and optional action', (
       tester,

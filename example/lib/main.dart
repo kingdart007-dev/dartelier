@@ -15,6 +15,13 @@ class DartelierExampleApp extends StatefulWidget {
 class _DartelierExampleAppState extends State<DartelierExampleApp> {
   ThemeMode _themeMode = ThemeMode.system;
   int _counter = 0;
+  final TextEditingController _nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +111,28 @@ class _DartelierExampleAppState extends State<DartelierExampleApp> {
                       expand: true,
                       onPressed: () => setState(() => _counter++),
                     ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: DartelierSpacing.xl),
+              const SectionHeader(
+                title: 'Input',
+                subtitle: 'A themed field with caller-owned validation and text.',
+              ),
+              const SizedBox(height: DartelierSpacing.md),
+              AppCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppTextField(
+                      label: 'Your name',
+                      hintText: 'Type your name',
+                      controller: _nameController,
+                      textInputAction: TextInputAction.done,
+                      onChanged: (_) => setState(() {}),
+                    ),
+                    const SizedBox(height: DartelierSpacing.sm),
+                    Text('Current value: ${_nameController.text}'),
                   ],
                 ),
               ),

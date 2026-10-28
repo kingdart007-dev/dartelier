@@ -37,7 +37,7 @@ Acceptance gate:
 ## Stage 3 — First production-minded components
 **First reusable slice implemented; quality verification remains open.**
 
-Implemented: AppCard, AppButton, EmptyState, SectionHeader, and AppPage. The example app demonstrates component use and theme switching.
+Implemented: AppCard, AppButton, AppTextField, EmptyState, SectionHeader, and AppPage. The example app demonstrates component use, themed input, and theme switching.
 
 Acceptance gate:
 - [x] Components have narrow, documented APIs.
