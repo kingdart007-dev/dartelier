@@ -2,7 +2,7 @@
 
 **A thoughtfully engineered Flutter UI system and toolkit for building maintainable mobile apps.**
 
-Dartelier aims to make Flutter development more consistent and approachable—from reusable design foundations for experienced engineers to better-guided workflows for newer developers. Implementation is incremental: we validate the foundations before expanding into a large component catalogue or visual app builder.
+Dartelier aims to make Flutter development more consistent and approachable—from reusable design foundations for experienced engineers to better-guided workflows for newer developers. Implementation is incremental: we validate foundations before expanding into a large component catalogue or visual app builder.
 
 ## Principles
 
@@ -22,24 +22,17 @@ Dartelier aims to make Flutter development more consistent and approachable—fr
 
 ## Current status
 
-**Early implementation: initial design foundations are in progress.**
+**Early implementation: the first reusable layout and section components are in place.**
 
-The package currently exposes a small spacing scale, corner-radius scale, and neutral light/dark `ThemeData` starting points. These are the first foundations—not a complete design system or a production-ready component library. CI is being used to validate the minimum supported Flutter version and the current stable channel; check the [Actions results](https://github.com/kingdart007-dev/dartelier/actions) for the latest status.
+The package exposes spacing and corner-radius scales, neutral light/dark ThemeData starting points, AppPage for safe-area-aware constrained page layout, and SectionHeader for flexible section titles, supporting text, and trailing actions. These are deliberately small foundations—not a complete design system or a production-ready component library. CI currently validates Flutter 3.47.8; support for other SDK versions will be added after compatibility is verified.
 
 ## Scope and package structure
 
-The initial target is Flutter/Dart for Android and iOS. The repository starts as one package named `dartelier`; separate packages and an example app will be added only when a real use case justifies them.
+The initial target is Flutter/Dart for Android and iOS. The repository starts as one package named dartelier; separate packages and an example app will be added only when a real use case justifies them.
 
 ## Local quality checks
 
-With a compatible Flutter SDK installed, run:
-
-```sh
-flutter pub get
-dart format --output=none --set-exit-if-changed .
-flutter analyze --fatal-infos
-flutter test
-```
+With Flutter 3.47 or newer installed, run flutter pub get, dart format --output=none --set-exit-if-changed ., flutter analyze --fatal-infos, and flutter test.
 
 ## License
 

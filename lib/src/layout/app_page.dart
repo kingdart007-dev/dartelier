@@ -33,7 +33,10 @@ class AppPage extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: maxWidth),
-        child: Padding(padding: padding, child: child),
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(padding: padding, child: child),
+        ),
       ),
     );
 

@@ -87,7 +87,7 @@ void main() {
         ),
       );
 
-      expect(tester.getTopLeft(find.byKey(const Key('page-content'))).dx, 10);
+      expect(tester.getTopLeft(find.byKey(const Key('page-content'))).dx, 90);
       expect(tester.getTopLeft(find.byKey(const Key('page-content'))).dy, 10);
     });
   });

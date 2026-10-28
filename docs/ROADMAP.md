@@ -8,23 +8,23 @@ This roadmap is incremental. A stage advances only when its acceptance criteria 
 Deliverables: product vision, engineering principles, initial scope, non-goals, and risks.
 
 ## Stage 1 — Repository foundation
-**Mostly implemented; CI verification and contribution guidance remain open.**
+**Implemented; CI verification remains open.**
 
-Implemented: single-package direction, package manifest, public entrypoint, analysis configuration, smoke/behavior tests, MIT license, and quality workflow.
+Implemented: single-package direction, package manifest, public entrypoint, analysis configuration, behavior tests, MIT license, and quality workflow.
 
 Acceptance gate:
 - [x] One-package starting direction documented.
 - [x] Package manifest and public entrypoint exist.
 - [x] Formatting, analysis, and tests are configured.
 - [x] CI is configured for pushes and pull requests.
-- [ ] CI passes on the minimum supported Flutter version and current stable.
+- [ ] CI passes on the declared supported Flutter version.
 - [ ] Clean-checkout setup is verified.
 - [ ] Contribution guidance is in place.
 
 ## Stage 2 — Design foundations
-**First implementation started.**
+**Core layout and theme foundations implemented; design review continues.**
 
-Implemented so far: spacing and corner-radius scales, plus neutral light/dark theme starting points.
+Implemented: spacing and corner-radius scales, neutral light/dark theme starting points, safe-area-aware constrained AppPage, and flexible SectionHeader.
 
 Still required:
 - Color and typography token strategy, including single-source-of-truth decisions.
@@ -35,12 +35,12 @@ Still required:
 
 Acceptance gate:
 - [ ] Tokens have a single source of truth and documented intent.
-- [ ] Theme customization works without fighting consumer `ThemeData`.
+- [ ] Theme customization works without fighting consumer ThemeData.
 - [ ] Contrast, text scaling, RTL, and reduced motion have a verification plan.
 - [ ] Foundation behavior is tested before components are added.
 
 ## Stage 3 — First production-minded components
-Add a deliberately small selection of high-value components only after Stage 2 passes. Components need documented APIs, meaningful state handling, accessibility behavior, tests, and examples.
+Continue with focused, high-value components after reviewing the first component APIs. Components need documented APIs, meaningful state handling, accessibility behavior, tests, and examples.
 
 ## Stage 4 — Optional app foundation
 Explore navigation, state, error handling, and project structure as optional patterns. Do not force Riverpod, go_router, or other dependencies on all users without evidence.
