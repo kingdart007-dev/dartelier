@@ -34,9 +34,9 @@ class _DartelierExampleAppState extends State<DartelierExampleApp> {
                     child: Text(
                       'DARTELIER',
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            letterSpacing: 2,
-                            fontWeight: FontWeight.w700,
-                          ),
+                        letterSpacing: 2,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                   DropdownButton<ThemeMode>(
@@ -73,8 +73,8 @@ class _DartelierExampleAppState extends State<DartelierExampleApp> {
                 'A small, customizable Flutter UI foundation. Explore the '
                 'tokens, surfaces, and actions that are ready to use.',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               const SizedBox(height: DartelierSpacing.xl),
               const SectionHeader(
@@ -151,8 +151,8 @@ class _DartelierExampleAppState extends State<DartelierExampleApp> {
                 'Design tokens: 4 · 8 · 12 · 16 · 24 · 32 · 48',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           ),

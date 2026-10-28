@@ -65,20 +65,20 @@ class AppButton extends StatelessWidget {
 
     final Widget button = switch (variant) {
       AppButtonVariant.primary => FilledButton(
-          onPressed: enabledCallback,
-          style: FilledButton.styleFrom(shape: shape),
-          child: Row(mainAxisSize: MainAxisSize.min, children: content),
-        ),
+        onPressed: enabledCallback,
+        style: FilledButton.styleFrom(shape: shape),
+        child: Row(mainAxisSize: MainAxisSize.min, children: content),
+      ),
       AppButtonVariant.secondary => OutlinedButton(
-          onPressed: enabledCallback,
-          style: OutlinedButton.styleFrom(shape: shape),
-          child: Row(mainAxisSize: MainAxisSize.min, children: content),
-        ),
+        onPressed: enabledCallback,
+        style: OutlinedButton.styleFrom(shape: shape),
+        child: Row(mainAxisSize: MainAxisSize.min, children: content),
+      ),
       AppButtonVariant.tertiary => TextButton(
-          onPressed: enabledCallback,
-          style: TextButton.styleFrom(shape: shape),
-          child: Row(mainAxisSize: MainAxisSize.min, children: content),
-        ),
+        onPressed: enabledCallback,
+        style: TextButton.styleFrom(shape: shape),
+        child: Row(mainAxisSize: MainAxisSize.min, children: content),
+      ),
     };
 
     return expand ? SizedBox(width: double.infinity, child: button) : button;

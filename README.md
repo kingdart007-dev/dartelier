@@ -20,6 +20,8 @@ Dartelier aims to make Flutter development more consistent and approachable—fr
 - [Design Foundations](docs/DESIGN_FOUNDATIONS.md)
 - [Roadmap & Stage Gates](docs/ROADMAP.md)
 - [Repository Foundation Decisions](docs/decisions/REPOSITORY_FOUNDATION.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
 
 ## Current status
 

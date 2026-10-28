@@ -10,16 +10,16 @@ Deliverables: product vision, engineering principles, initial scope, non-goals, 
 ## Stage 1 — Repository foundation
 **Implementation in place; CI verification remains open.**
 
-Implemented: single-package direction, package manifest, public entrypoint, analysis configuration, package tests, MIT license, quality workflow, and a runnable example package.
+Implemented: single-package direction, package manifest, public entrypoint, analysis configuration, package tests, MIT license, quality workflow, contribution guidance, issue templates, and a runnable example package.
 
 Acceptance gate:
 - [x] One-package library direction documented.
 - [x] Package manifest and public entrypoint exist.
 - [x] Formatting, analysis, and tests are configured.
 - [x] CI is configured for pushes and pull requests.
+- [x] Contribution and issue-reporting paths are documented.
 - [ ] CI passes on the declared supported Flutter version.
 - [ ] Clean-checkout setup is verified.
-- [ ] Contribution guidance is in place.
 
 ## Stage 2 — Design foundations
 **Initial design tokens, themes, and layout primitives implemented; review continues.**
