@@ -18,7 +18,7 @@ Acceptance gate:
 - [x] Formatting, analysis, and tests are configured.
 - [x] CI is configured for pushes and pull requests.
 - [x] Contribution and issue-reporting paths are documented.
-- [ ] CI passes on the declared supported Flutter version.
+- [x] CI passes on the declared supported Flutter version.
 - [ ] Clean-checkout setup is verified.
 
 ## Stage 2 — Design foundations
@@ -43,7 +43,7 @@ Acceptance gate:
 - [x] Components have narrow, documented APIs.
 - [x] Button disabled/loading behavior and interactive card behavior have tests.
 - [x] User-facing empty-state text is supplied by the consumer.
-- [ ] CI passes for package and example.
+- [x] CI passes for package and example.
 - [ ] Accessibility and localization behavior receives manual review.
 
 ## Stage 4 — Optional app foundation

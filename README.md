@@ -27,7 +27,7 @@ Dartelier aims to make Flutter development more consistent and approachable—fr
 
 **Early implementation: design tokens, reusable components, an interactive example app, and automated quality checks are in place.**
 
-The public API includes spacing, radii, neutral color primitives, typography roles, light/dark themes, themed input and button defaults, AppPage, SectionHeader, AppCard, AppButton, AppTextField, and EmptyState. The example app demonstrates theme selection, component variants, and interactions. This is a growing foundation—not a complete design system or production-ready component library. CI validates Flutter 3.47.8; support for other SDK versions will be added after compatibility is verified.
+The public API includes spacing, radii, neutral color primitives, typography roles, light/dark themes, themed input and button defaults, AppPage, SectionHeader, AppCard, AppButton, AppTextField, and EmptyState. The example app demonstrates theme selection, themed text input, component variants, and interactions. This is a growing foundation—not a complete design system or production-ready component library. CI validates Flutter 3.47.8; support for other SDK versions will be added after compatibility is verified.
 
 ## Run the example
 
