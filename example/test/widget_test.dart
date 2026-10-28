@@ -8,10 +8,17 @@ void main() {
       await tester.pumpWidget(const DartelierExampleApp());
 
       expect(find.text('DARTELIER'), findsOneWidget);
+      expect(
+        find.text('Good design starts with good foundations.'),
+        findsOneWidget,
+      );
       expect(find.text('Surfaces'), findsOneWidget);
+
+      await tester.scrollUntilVisible(find.text('Actions'), 240);
       expect(find.text('Actions'), findsOneWidget);
+
+      await tester.scrollUntilVisible(find.text('Empty state'), 240);
       expect(find.text('Empty state'), findsOneWidget);
-      expect(find.text('Try an interaction'), findsOneWidget);
     },
   );
 }
