@@ -50,7 +50,7 @@ abstract final class DartelierTheme {
     );
   }
 
-  static ButtonStyle _buttonStyle(OutlinedBorder shape) => FilledButton.styleFrom(
+  static ButtonStyle _buttonStyle(RoundedRectangleBorder shape) => FilledButton.styleFrom(
     minimumSize: const Size(48, 48),
     padding: const EdgeInsets.symmetric(
       horizontal: DartelierSpacing.md,
