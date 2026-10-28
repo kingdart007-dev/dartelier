@@ -1,27 +1,32 @@
 # Repository Foundation — Decision Record
 
-Status: Proposed
+Status: Adopted for the initial implementation; validation is ongoing.
 
-## Initial direction
+## Package structure
 
-Start with one Flutter package named `dartelier`. Avoid a multi-package workspace until a real boundary requires it. Add a runnable example when the first meaningful public API exists.
+Start with one Flutter package named `dartelier`. Avoid a multi-package workspace until a real boundary requires it. Add a runnable example when a meaningful public API needs an interactive demonstration.
+
+## SDK support
+
+- Minimum declared Flutter: 3.38.0.
+- Minimum declared Dart: 3.10.0, paired with Flutter 3.38.0.
+- CI checks Flutter 3.38.0 and the current stable channel.
+- The declared lower bound is a compatibility target, not a verified claim until the 3.38.0 CI job passes.
+
+The Flutter release archive documents stable releases and their paired Dart versions: https://docs.flutter.dev/install/archive.
 
 ## Quality baseline
 
-Use Dart formatting, Flutter static analysis, automated tests, and a minimal GitHub Actions workflow. Do not claim checks passed until CI reports a successful run.
-
-## SDK compatibility
-
-Use the stable Flutter channel in CI. The minimum supported Flutter/Dart versions must be selected from verified release compatibility and documented before publishing. Revisit the lower bound when APIs or dependencies require it.
+Use Dart formatting, Flutter static analysis, automated tests, and a minimal GitHub Actions workflow. Do not claim checks passed until CI reports success for both matrix entries.
 
 ## License
 
-Recommendation: MIT for a permissive, low-friction starting point. This is a licensing decision and should be confirmed before a public release.
+MIT is selected as the initial permissive license. Review licensing before accepting third-party contributions or publishing a package.
 
 ## Acceptance
 
-- Package metadata and a public entrypoint exist.
+- Package metadata and public entrypoint exist.
 - Formatting, analysis, and tests are configured.
-- CI runs those checks on pushes and pull requests.
-- The README explains the actual current state.
-- No design-system APIs are added during this foundation stage.
+- CI checks the minimum supported version and current stable.
+- README reflects the actual state.
+- No design-system APIs beyond the first tested foundations are added without review.
