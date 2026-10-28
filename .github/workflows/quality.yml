@@ -15,17 +15,22 @@ concurrency:
 
 jobs:
   quality:
-    name: Format, analyze, and test
+    name: Flutter ${{ matrix.flutter-version }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        flutter-version: ['3.38.0', 'stable']
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
 
-      - name: Set up Flutter stable
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: ${{ matrix.flutter-version }}
           channel: stable
           cache: true
 
