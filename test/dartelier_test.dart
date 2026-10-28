@@ -60,6 +60,22 @@ void main() {
       );
       expect(customized.visualDensity, VisualDensity.compact);
     });
+
+    test('configures consistent form fields and touch targets', () {
+      final light = DartelierTheme.light;
+      final dark = DartelierTheme.dark;
+
+      expect(light.inputDecorationTheme.filled, isTrue);
+      expect(dark.inputDecorationTheme.filled, isTrue);
+      expect(
+        light.filledButtonTheme.style?.minimumSize?.resolve(<WidgetState>{}),
+        const Size(48, 48),
+      );
+      expect(
+        light.iconButtonTheme.style?.minimumSize?.resolve(<WidgetState>{}),
+        const Size(48, 48),
+      );
+    });
   });
 
   group('AppPage', () {

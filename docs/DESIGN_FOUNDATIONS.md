@@ -51,6 +51,8 @@ DartelierColors exposes neutral palette primitives. Components should prefer sem
 
 Wrap the application in Flutter's MaterialApp and pass DartelierTheme.light and DartelierTheme.dark as theme and darkTheme. Use ThemeMode.system when the operating system should select the theme. Apps can use copyWith or construct their own ThemeData from the semantic tokens.
 
+The theme configures restrained outlined cards, filled form fields, consistent field focus/error states, and 48 logical-pixel minimum button targets. These are defaults; consuming apps can override component themes where product needs differ.
+
 ## Components
 
 - AppPage: safe-area-aware, top-aligned, width-constrained page content. It does not own scrolling or navigation.
@@ -63,6 +65,7 @@ Wrap the application in Flutter's MaterialApp and pass DartelierTheme.light and 
 
 - Do not bake English copy into shared components. Provide translated labels from the consuming application.
 - Respect text scaling; do not constrain content to fixed heights.
+- Aim for comfortable touch targets and visible keyboard focus; validate on Android and iOS.
 - Use semantic button labels for icon-only actions at the call site.
 - Check color contrast and focus order in real screens, not just isolated widgets.
 - Use Directionality and direction-aware padding/alignment for layouts that are meant to mirror. These first components avoid fixed directional padding where possible.

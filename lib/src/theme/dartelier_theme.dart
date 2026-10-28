@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../foundation/dartelier_colors.dart';
+import '../foundation/dartelier_radii.dart';
+import '../foundation/dartelier_spacing.dart';
 import '../foundation/dartelier_typography.dart';
 
 /// Builds Dartelier's neutral, low-noise themes for Flutter applications.
@@ -8,6 +10,72 @@ import '../foundation/dartelier_typography.dart';
 /// These are starting points, not a branding lock-in. Applications can copy
 /// the returned ThemeData and customize its color scheme and component themes.
 abstract final class DartelierTheme {
+  static const BorderRadius _controlRadius = BorderRadius.all(
+    Radius.circular(DartelierRadii.md),
+  );
+
+  static RoundedRectangleBorder _buttonShape() =>
+      const RoundedRectangleBorder(borderRadius: _controlRadius);
+
+  static InputDecorationTheme _inputTheme({
+    required Color fillColor,
+    required Color outline,
+    required Color focused,
+    required Color error,
+    required Color mutedText,
+    required Color disabledOutline,
+  }) {
+    OutlineInputBorder border(Color color, {double width = 1}) =>
+        OutlineInputBorder(
+          borderRadius: _controlRadius,
+          borderSide: BorderSide(color: color, width: width),
+        );
+
+    return InputDecorationTheme(
+      filled: true,
+      fillColor: fillColor,
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: DartelierSpacing.md,
+        vertical: DartelierSpacing.sm,
+      ),
+      hintStyle: TextStyle(color: mutedText),
+      labelStyle: TextStyle(color: mutedText),
+      border: border(outline),
+      enabledBorder: border(outline),
+      focusedBorder: border(focused, width: 1.5),
+      errorBorder: border(error),
+      focusedErrorBorder: border(error, width: 1.5),
+      disabledBorder: border(disabledOutline),
+    );
+  }
+
+  static ButtonStyle _filledButtonStyle() => FilledButton.styleFrom(
+        minimumSize: const Size(48, 48),
+        padding: const EdgeInsets.symmetric(
+          horizontal: DartelierSpacing.md,
+          vertical: DartelierSpacing.sm,
+        ),
+        shape: _buttonShape(),
+      );
+
+  static ButtonStyle _outlinedButtonStyle() => OutlinedButton.styleFrom(
+        minimumSize: const Size(48, 48),
+        padding: const EdgeInsets.symmetric(
+          horizontal: DartelierSpacing.md,
+          vertical: DartelierSpacing.sm,
+        ),
+        shape: _buttonShape(),
+      );
+
+  static ButtonStyle _textButtonStyle() => TextButton.styleFrom(
+        minimumSize: const Size(48, 48),
+        padding: const EdgeInsets.symmetric(
+          horizontal: DartelierSpacing.md,
+          vertical: DartelierSpacing.sm,
+        ),
+        shape: _buttonShape(),
+      );
+
   /// Neutral light theme with semantic colors and restrained surfaces.
   static ThemeData get light {
     const scheme = ColorScheme.light(
@@ -40,8 +108,25 @@ abstract final class DartelierTheme {
         elevation: 0,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
+          borderRadius: BorderRadius.all(Radius.circular(DartelierRadii.lg)),
           side: BorderSide(color: DartelierColors.outline),
+        ),
+      ),
+      inputDecorationTheme: _inputTheme(
+        fillColor: DartelierColors.softPaper,
+        outline: DartelierColors.outline,
+        focused: scheme.primary,
+        error: scheme.error,
+        mutedText: scheme.onSurfaceVariant,
+        disabledOutline: scheme.outlineVariant,
+      ),
+      filledButtonTheme: FilledButtonThemeData(style: _filledButtonStyle()),
+      outlinedButtonTheme: OutlinedButtonThemeData(style: _outlinedButtonStyle()),
+      textButtonTheme: TextButtonThemeData(style: _textButtonStyle()),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          shape: _buttonShape(),
         ),
       ),
     );
@@ -79,8 +164,25 @@ abstract final class DartelierTheme {
         elevation: 0,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
+          borderRadius: BorderRadius.all(Radius.circular(DartelierRadii.lg)),
           side: BorderSide(color: DartelierColors.outlineDark),
+        ),
+      ),
+      inputDecorationTheme: _inputTheme(
+        fillColor: DartelierColors.surfaceDark,
+        outline: DartelierColors.outlineDark,
+        focused: scheme.primary,
+        error: scheme.error,
+        mutedText: scheme.onSurfaceVariant,
+        disabledOutline: scheme.outlineVariant,
+      ),
+      filledButtonTheme: FilledButtonThemeData(style: _filledButtonStyle()),
+      outlinedButtonTheme: OutlinedButtonThemeData(style: _outlinedButtonStyle()),
+      textButtonTheme: TextButtonThemeData(style: _textButtonStyle()),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          minimumSize: const Size(48, 48),
+          shape: _buttonShape(),
         ),
       ),
     );
